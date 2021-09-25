@@ -39,29 +39,31 @@ class WorldGen:
         print(self.mtx_2WBoard)
 
     def CreateNodeWeb(self,W2matrix):
-        self.matrix=W2matrix
+        matrix=W2matrix
         for i in range (0,self.Wrld_Size):
             for j in range (0,self.Wrld_Size):
                 #convierte en la clase NODOS la matrix y setea las posiciones que estan
-                if(self.matrix[i][j]==0):
-                    self.matrix[i][j]=Node(j,i,"libre")
+                if(matrix[i][j]==0):
+                    matrix[i][j]=Node(j,i,"libre")
                 else:
-                    self.matrix[i][j]=Node(j,i,"pared")               
+                    matrix[i][j]=Node(j,i,"pared")               
         #ADDWEBS           
         for i in range (0,self.Wrld_Size):
             for j in range (0,self.Wrld_Size):
                 
-                if(self.matrix[i][j].posX<self.Wrld_Size-1):
+                if(matrix[i][j].posX<self.Wrld_Size-1):
                     #Derecha
-                    self.matrix[i][j].connectDerecha=self.matrix[i][j+1]
+                    matrix[i][j].connectDerecha=matrix[i][j+1]
                     #izquierda
-                    self.matrix[i][j+1].connectIzquierda=self.matrix[i][j]
-                if(self.matrix[i][j].posY<self.Wrld_Size-1):
+                    matrix[i][j+1].connectIzquierda=matrix[i][j]
+                if(matrix[i][j].posY<self.Wrld_Size-1):
                     #Abajo
-                    self.matrix[i][j].connectAbajo=self.matrix[i+1][j]
+                    matrix[i][j].connectAbajo=matrix[i+1][j]
                     #Arriba
-                    self.matrix[i+1][j].connectArriba=self.matrix[i][j]
+                    matrix[i+1][j].connectArriba=matrix[i][j]
 
-                print(self.matrix[i][j].GetPos(),self.matrix[i][j].state,self.matrix[i][j].connectArriba,self.matrix[i][j].connectAbajo,self.matrix[i][j].connectIzquierda,self.matrix[i][j].connectDerecha)
-      
-#TEST       
+                print(matrix[i][j].GetPos(),matrix[i][j].state,matrix[i][j].connectArriba,matrix[i][j].connectAbajo,matrix[i][j].connectIzquierda,matrix[i][j].connectDerecha)
+
+
+
+
