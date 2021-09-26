@@ -10,7 +10,7 @@ GfxOrd_BoardObjects=pyglet.graphics.OrderedGroup(3)
 GfxOrd_Players=pyglet.graphics.OrderedGroup(4)
 
 SIZE = 800
-BOARD_SIZE=500
+BOARD_SIZE=20
 NUMPLAYERS=4
 BOARD_BORDER = int(SIZE/15)
 

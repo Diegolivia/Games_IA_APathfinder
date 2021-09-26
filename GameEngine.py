@@ -17,6 +17,7 @@ class Engine:
             x=x.strip()
             self.arr_imgBank.append(pyi.load(x))
         print("Imagenes Cargadas")
+
         #Setting up the variables for Assets Loading
         self.BACKGROUND_SCALE = SIZE/self.arr_imgBank[0].width
         self.SLOT_SCALE = self.BACKGROUND_SCALE*(9/BOARD_SIZE)
@@ -32,6 +33,7 @@ class Engine:
         self.mtx_2WBoard=worldgen.Create2WMatrix()
         self.mtx_NodeBoard=worldgen.CreateNodeWeb(self.mtx_2WBoard)
         self.mtx_Players=worldgen.GeneratePlayers(NUMPLAYERS,self.mtx_2WBoard,self.mtx_NodeBoard)
+        print(self.mtx_2WBoard)
         #Generating the objects in the board statically
         for y in range(BOARD_SIZE):
             for x in range(BOARD_SIZE):
@@ -73,3 +75,21 @@ class Engine:
             pSprite.scale=self.SLOT_SCALE
             self.arr_SpriteBank.append(pSprite)
         pass
+
+
+    def key_command(self,key):
+        if key == 4:
+            #x = self.mtx_Players[0].ActualPos.posX
+            #y = self.mtx_Players[0].ActualPos.posY
+            print("te moviste hacia arriba")
+            print("posiciones mtxplayer:")
+            print(self.mtx_Players[0].ActualPos.posX,self.mtx_Players[0].ActualPos.posY)
+            print("Board")
+            print(self.mtx_2WBoard[self.mtx_Players[0].ActualPos.posX][self.mtx_Players[0].ActualPos.posY])
+            
+            if self.mtx_2WBoard[self.mtx_Players[0].ActualPos.posX][self.mtx_Players[0].ActualPos.posY-1] != 1 :
+               self.mtx_Players[0].ActualPos.posY -= 1
+               print(self.mtx_Players[0].ActualPos.posY)
+               #print(self.mtx_2WBoard)
+            else:
+                print("Pared")
