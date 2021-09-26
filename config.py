@@ -7,16 +7,11 @@ Gfx_batch=pyglet.graphics.Batch()
 GfxOrd_Background=pyglet.graphics.OrderedGroup(0)
 GfxOrd_Foreground=pyglet.graphics.OrderedGroup(1)
 GfxOrd_BoardObjects=pyglet.graphics.OrderedGroup(3)
+GfxOrd_Players=pyglet.graphics.OrderedGroup(4)
 
 SIZE = 800
-BOARD_SIZE=20
+BOARD_SIZE=500
 NUMPLAYERS=4
+BOARD_BORDER = int(SIZE/15)
 
 imgPath="Media/IndexMedia.txt"
-imgBoard = pyi.load('Media/BoardHQ.png')
-imgSlot = pyi.load('Media/SlotHQ.png')
-
-BOARD_BORDER = int(SIZE/15)
-BACKGROUND_SCALE = SIZE/imgBoard.width
-SLOT_SCALE = BACKGROUND_SCALE*(9/BOARD_SIZE)
-JUMP = imgSlot.width*SLOT_SCALE
