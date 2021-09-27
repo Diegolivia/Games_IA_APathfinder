@@ -1,32 +1,5 @@
 import random
-
-
-class Node:
-    def __init__(self, x, y, state):
-        self.posX = x
-        self.posY = y
-        self.state = state
-        self.Next = [None, None, None, None]
-
-    def GetPos(self):
-        return self.posX, self.posY
-
-    def GetPosX(self):
-        return self.posX
-
-    def GetPosY(self):
-        return self.posX
-
-    def SetPos(self, posX, posY):
-        self.posX = posX
-        self.posY = posY
-
-
-class Player:
-    def __init__(self):
-        self.ActualPos = None
-        self.GoalPos = None
-
+from ClassLab import *
 
 #NOTA: SIEMPRE LA PRIMERA POSICION ES Y, LA SEGUNDA ES X
 class WorldGen:
@@ -39,6 +12,7 @@ class WorldGen:
         for i in range(self.Wrld_Size):
             a = random.choices(population=[0, 1], weights=[0.9,0.1], k=self.Wrld_Size)
             arr.append(a)
+            print(a)
         return arr
 
     def CreateNodeWeb(self,mtx):

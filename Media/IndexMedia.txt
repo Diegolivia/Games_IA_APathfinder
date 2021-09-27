@@ -6,6 +6,10 @@ Media/Player1.png
 Media/Player2.png
 Media/Player3.png
 Media/Player4.png
+Media/Player1Goal.png
+Media/Player2Goal.png
+Media/Player3Goal.png
+Media/Player4Goal.png
 Media/SLOTP1.png
 Media/SLOTP2.png
 Media/SLOTP3.png

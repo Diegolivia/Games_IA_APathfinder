@@ -9,6 +9,7 @@ class Engine:
         self.mtx_Players=[]
         self.load_World(Ass_List)
         self.load_Players()
+        self.RunGame()
 
     def load_World(self,Ass_List):
         #Loading the images from the "Media" Folder
@@ -33,7 +34,6 @@ class Engine:
         self.mtx_2WBoard=worldgen.Create2WMatrix()
         self.mtx_NodeBoard=worldgen.CreateNodeWeb(self.mtx_2WBoard)
         self.mtx_Players=worldgen.GeneratePlayers(NUMPLAYERS,self.mtx_2WBoard,self.mtx_NodeBoard)
-        print(self.mtx_2WBoard)
         #Generating the objects in the board statically
         for y in range(BOARD_SIZE):
             for x in range(BOARD_SIZE):
@@ -54,28 +54,13 @@ class Engine:
         print("Sprites Cargados")
 
     def load_Players(self):
-        #Generates Players Actual Position Sprites
+        #Generates Players Sprites
         for x in range(len(self.mtx_Players)):
-            pSprite=pyglet.sprite.Sprite(self.arr_imgBank[4+x],
-            BOARD_BORDER+self.JUMP*self.mtx_Players[x].ActualPos.posX,
-            BOARD_BORDER+self.JUMP*(BOARD_SIZE-self.mtx_Players[x].ActualPos.posY-1),
-            batch=Gfx_batch,
-            group=GfxOrd_Players
-            )
-            pSprite.scale=self.SLOT_SCALE
-            self.arr_SpriteBank.append(pSprite)
-        #Generates Players Goal Position Sprites
-        for x in range(len(self.mtx_Players)):
-            pSprite=pyglet.sprite.Sprite(self.arr_imgBank[8+x],
-            BOARD_BORDER+self.JUMP*self.mtx_Players[x].GoalPos.posX,
-            BOARD_BORDER+self.JUMP*(BOARD_SIZE-self.mtx_Players[x].GoalPos.posY-1),
-            batch=Gfx_batch,
-            group=GfxOrd_Players
-            )
-            pSprite.scale=self.SLOT_SCALE
-            self.arr_SpriteBank.append(pSprite)
-        pass
+            self.mtx_Players[x].ini_Sprites(self.arr_imgBank[4+x],self.arr_imgBank[8+x],self.JUMP,self.SLOT_SCALE)
 
+    def RunGame(self):
+        for player in self.mtx_Players:
+            player.InitPaths()
 
     def key_command(self,key):
         if key == 4:
@@ -83,13 +68,11 @@ class Engine:
             #y = self.mtx_Players[0].ActualPos.posY
             print("te moviste hacia arriba")
             print("posiciones mtxplayer:")
-            print(self.mtx_Players[0].ActualPos.posX,self.mtx_Players[0].ActualPos.posY)
-            print("Board")
-            print(self.mtx_2WBoard[self.mtx_Players[0].ActualPos.posX][self.mtx_Players[0].ActualPos.posY])
-            
+            print(self.mtx_Players[0].ActualPos.posX,self.mtx_Players[0].ActualPos.posY)            
             if self.mtx_2WBoard[self.mtx_Players[0].ActualPos.posX][self.mtx_Players[0].ActualPos.posY-1] != 1 :
                self.mtx_Players[0].ActualPos.posY -= 1
-               print(self.mtx_Players[0].ActualPos.posY)
-               #print(self.mtx_2WBoard)
             else:
                 print("Pared")
+        if key==3:
+            for player in self.mtx_Players:
+                player.Move()
