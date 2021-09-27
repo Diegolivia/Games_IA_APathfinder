@@ -11,7 +11,7 @@ GfxOrd_Players=pyglet.graphics.OrderedGroup(4)
 
 SIZE = 800
 BOARD_SIZE=20
-NUMPLAYERS=1
+NUMPLAYERS=3
 BOARD_BORDER = int(SIZE/15)
 
 imgPath="Media/IndexMedia.txt"
