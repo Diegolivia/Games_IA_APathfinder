@@ -1,5 +1,5 @@
 from config import *
-import math as math
+import math
 class Node:
     def __init__(self, x, y, state):
         self.posX = x
@@ -33,7 +33,8 @@ class Player:
         pass
 
     def Move(self):
-        print(self.Pathing.InitPath(self.ActualPos))
+        aux= self.Pathing.InitPath(self.ActualPos)
+        self.ActualPos = aux[0]
         self.UpdateSprite()
         
     def UpdateSprite(self):
@@ -94,7 +95,6 @@ class Pathfinder:
                 print(minval)
         return minval
 
-
     def finished(self,CurrNode):
         print("Camino finalizado")
         print(str([CurrNode,self.Measure_distances(CurrNode)]))
@@ -140,11 +140,10 @@ class Pathfinder:
         for x in self.path_toExplore:
             validate.append(self.runPathing(step+1))
         if (len(validate)==1):
-            return validate
+            return validate[0]
         else:
             mn=[]
             for x in validate:
-                min.append(x[1])
-            aux=index(math.min(mn))
-            print(validate[index(min())])
-        print("array -> " + str(validate))
+                mn.append(x[1])
+            aux=mn.index(min(mn))
+            return validate[aux]
